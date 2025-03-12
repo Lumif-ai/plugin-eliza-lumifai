@@ -1,49 +1,75 @@
 {
-    "name": "@elizaos-plugins/plugin-web-search",
-    "version": "0.1.9",
-    "type": "module",
-    "main": "dist/index.js",
-    "module": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "exports": {
-        "./package.json": "./package.json",
-        ".": {
-            "import": {
-                "@elizaos/source": "./src/index.ts",
-                "types": "./dist/index.d.ts",
-                "default": "./dist/index.js"
-            }
-        }
-    },
-    "files": [
-        "dist"
-    ],
-    "dependencies": {
-        "@tavily/core": "^0.0.2",
-        "tsup": "8.3.5",
-        "js-tiktoken": "1.0.15"
-    },
-    "devDependencies": {
-        "@biomejs/biome": "1.5.3"
-    },
-    "scripts": {
-        "build": "tsup --format esm --dts",
-        "dev": "tsup --format esm --dts --watch",
-        "lint": "biome check src/",
-        "lint:fix": "biome check --apply src/",
-        "format": "biome format src/",
-        "format:fix": "biome format --write src/"
-    },
-    "peerDependencies": {
-        "whatwg-url": "7.1.0"
-    },
-    "agentConfig": {
-      "pluginType": "elizaos:client:1.0.0",
-      "pluginParameters": {
-        "TAVILY_API_KEY": {
-          "type": "string",
-          "description": "Tavily API key for accessing news services"
-        }
+  "name": "@elizaos-plugins/plugin-lumifai",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": {
+        "@elizaos/source": "./src/index.ts",
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
       }
     }
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.7.0",
+    "@tavily/core": "^0.0.2",
+    "@types/node": "^22.13.10",
+    "ai": "^4.1.58",
+    "fastify": "^5.2.1",
+    "js-tiktoken": "1.0.15",
+    "tsup": "8.3.5",
+    "typescript": "^5.8.2",
+    "viem": "^2.23.10",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.5.3",
+    "@elizaos/core": "0.25.9"
+  },
+  "scripts": {
+    "build": "tsup --format esm --dts",
+    "dev": "tsup --format esm --dts --watch",
+    "lint": "biome check src/",
+    "lint:fix": "biome check --apply src/",
+    "format": "biome format src/",
+    "format:fix": "biome format --write src/"
+  },
+  "peerDependencies": {
+    "@elizaos/core": "0.25.9",
+    "whatwg-url": "7.1.0"
+  },
+  "agentConfig": {
+    "pluginType": "elizaos:client:1.0.0",
+    "pluginParameters": {
+      "LUMIFAI_AGENT_ID": {
+        "type": "string",
+        "description": "The unique agent name on the Lumifai network"
+      },
+      "LUMIFAI_RPC_URL": {
+        "type": "string",
+        "description": "The URL of the Lumifai RPC endpoint"
+      },
+      "LUMIFAI_CHAIN": {
+        "type": "string",
+        "description": "The chain name of the Lumifai network, eg mainnet, sepolia, hardhat"
+      },
+      "LUMIFAI_AGENT_REGISTRATION_CONTRACT": {
+        "type": "string",
+        "description": "The contract address of the Lumifai agent registration contract"
+      },
+      "LUMIFAI_PRIVATE_KEY_PATH": {
+        "type": "string",
+        "description": "The private key with which the Lumifai agent name was registered"
+      }
+    }
+  },
+  "packageManager": "pnpm@10.3.0+sha512.ee592eda8815a8a293c206bb0917c4bb0ff274c50def7cbc17be05ec641fc2d1b02490ce660061356bd0d126a4d7eb2ec8830e6959fb8a447571c631d5a2442d"
 }

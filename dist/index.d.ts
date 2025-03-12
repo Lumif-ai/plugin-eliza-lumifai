@@ -1,14 +1,38 @@
-import * as _elizaos_core from '@elizaos/core';
+import { IAgentRuntime, Client, ClientInstance } from '@elizaos/core';
 
-declare const webSearchPlugin: {
+declare class LumifaiClientManager {
+    private publicClient;
+    private walletClient;
+    private accessToken;
+    private server;
+    private runtime;
+    private readonly agentRegistrationAbi;
+    constructor();
+    private resolveChain;
+    private getConfigFromRuntime;
+    private setupServer;
+    initialize(runtime: IAgentRuntime): Promise<void>;
+    private registerAgent;
+    private setupEventListener;
+    getAccessToken(): string | null;
+    cleanup(): Promise<void>;
+}
+declare class LumifaiClient implements Client {
+    name: string;
+    private clientManager;
+    private getConfigFromRuntime;
+    start(runtime: IAgentRuntime): Promise<ClientInstance>;
+}
+
+declare const plugin: {
     name: string;
     description: string;
-    actions: _elizaos_core.Action[];
+    actions: any[];
     evaluators: any[];
     providers: any[];
     services: any[];
-    clients: any[];
+    clients: LumifaiClient[];
     adapters: any[];
 };
 
-export { webSearchPlugin as default, webSearchPlugin };
+export { LumifaiClientManager, plugin as default };
